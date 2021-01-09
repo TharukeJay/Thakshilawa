@@ -44,5 +44,7 @@ namespace XYZLaundry.Data
         public DbSet<ClassSession> ClassSession { get; set; }
 
         public DbSet<Staff> Staff { get; set; }
+
+        public DbSet<Payments> Payments { get; set; }
     }
 }

@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Thakshilawa.Migrations
 {
-    public partial class Initials : Migration
+    public partial class InitialCreate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -90,11 +90,6 @@ namespace Thakshilawa.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    CreatedOn = table.Column<DateTime>(nullable: false),
-                    CreatedBy = table.Column<string>(nullable: false),
-                    ModifiedOn = table.Column<DateTime>(nullable: true),
-                    ModifiedBy = table.Column<string>(nullable: true),
-                    IsDeleted = table.Column<bool>(nullable: false),
                     EmployeeID = table.Column<int>(nullable: false),
                     Date = table.Column<DateTime>(nullable: false),
                     Income = table.Column<decimal>(nullable: false),
@@ -131,11 +126,6 @@ namespace Thakshilawa.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    CreatedOn = table.Column<DateTime>(nullable: false),
-                    CreatedBy = table.Column<string>(nullable: false),
-                    ModifiedOn = table.Column<DateTime>(nullable: true),
-                    ModifiedBy = table.Column<string>(nullable: true),
-                    IsDeleted = table.Column<bool>(nullable: false),
                     ClassID = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
@@ -198,10 +188,29 @@ namespace Thakshilawa.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Payments",
+                columns: table => new
+                {
+                    PaymentsId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    StudentID = table.Column<int>(nullable: false),
+                    ClassID = table.Column<int>(nullable: false),
+                    Amount = table.Column<decimal>(type: "money", nullable: false),
+                    PaymentType = table.Column<string>(nullable: true),
+                    Month = table.Column<string>(nullable: true),
+                    PaidOn = table.Column<DateTime>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Payments", x => x.PaymentsId);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Staff",
                 columns: table => new
                 {
-                    StaffId = table.Column<float>(nullable: false),
+                    StaffId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(nullable: true),
                     NICNo = table.Column<string>(nullable: true),
                     DateofBirth = table.Column<DateTime>(nullable: false),
@@ -544,6 +553,9 @@ namespace Thakshilawa.Migrations
 
             migrationBuilder.DropTable(
                 name: "OrderItem");
+
+            migrationBuilder.DropTable(
+                name: "Payments");
 
             migrationBuilder.DropTable(
                 name: "Staff");

@@ -1,7 +1,7 @@
 ﻿@model Thakshilawa.ViewModels.staffViewModel
 @inject XYZLaundry.Data.ApplicationDbContext Context
 @inject UserManager<ApplicationUser> _userManager
-@{ ViewData["Title"] = "Edit Student";
+@{ ViewData["Title"] = "Edit Staff";
     Layout = "";
 
     var user = await _userManager.GetUserAsync(User);

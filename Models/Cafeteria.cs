@@ -8,7 +8,7 @@ using XYZLaundry.Models;
 
 namespace Thakshilawa.Models
 {
-    public class Cafeteria : ModelBase
+    public class Cafeteria 
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]

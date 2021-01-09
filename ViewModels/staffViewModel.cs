@@ -7,7 +7,7 @@ namespace Thakshilawa.ViewModels
 {
     public class staffViewModel
     {
-        public float StaffId { get; set; }
+        public int StaffId { get; set; }
         public string Name { get; set; }
 
         public string NICNo { get; set; }

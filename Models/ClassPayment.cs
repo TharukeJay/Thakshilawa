@@ -8,7 +8,7 @@ using XYZLaundry.Models;
 
 namespace Thakshilawa.Models
 {
-    public class ClassPayment : ModelBase
+    public class ClassPayment 
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
