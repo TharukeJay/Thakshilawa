@@ -31,14 +31,6 @@ namespace XYZLaundry.Data
 
         public DbSet<OrderItem> OrderItems { get; set; }
 
-        public DbSet<Class> Classes { get; set; }
-
-        public DbSet<Attendence> Attendences { get; set; }
-
-        public DbSet<Cafeteria> Cafeterias { get; set; }
-
-        public DbSet<ClassPayment> ClassPayments { get; set; }
-
-        public DbSet<ClassSession> ClassSessions { get; set; }
+        public DbSet<Student> Student { get; set; }
     }
 }
