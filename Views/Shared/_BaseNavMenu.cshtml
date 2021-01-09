@@ -27,8 +27,8 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="home.html" class="brand-link">
-        <img src="~/img/abc-logo.png" alt="ABC Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-        <span class="brand-text font-weight-light">Laundry Management</span>
+        <img src="~/img/abc-logo2.png" alt="THEI Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+        <span class="brand-text font-weight-light">Thakshilawa</span> 
     </a>
 
     <!-- Sidebar -->
@@ -53,7 +53,7 @@
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                 <!-- Add icons to the links using the .nav-icon class
-                with font-awesome or any other icon font library -->
+    with font-awesome or any other icon font library -->
 
                 <li class="nav-item">
                     <a href="/" class="nav-link @(ViewContext.RouteData.Values["controller"].ToString() == "Home" ? "active" : "")">
@@ -101,38 +101,128 @@
                     </a>
                 </li>
 
+
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-users"></i>
+                        <p>Students</p>
+                    </a>
+                </li>
+
+
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-money-bill-alt"></i>
+                        <p>Payments</p>
+                    </a>
+                </li>
+
+
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-chalkboard-teacher"></i>
+                        <p>Classes</p>
+                    </a>
+                </li>
+
+
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-user-edit"></i>
+                        <p>Lecturers</p>
+                    </a>
+                </li>
+
+
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-users-cog"></i>
+                        <p>Staff</p>
+                    </a>
+                </li>
+
+
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-coffee"></i>
+                        <p>Cafeteria</p>
+                    </a>
+                </li>
+
+
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-users-lock"></i>
+                        <p>User Accounts</p>
+                    </a>
+                </li>
+
+
+                <li class="nav-item has-treeview">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-chart-pie"></i>
+                        <p>
+                            Reports
+                            <i class="fas fa-angle-left right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Attendance</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Class Schedules</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Income</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+
+
+
                 @*@if ((bool)@ViewData["IsAdmin"])
-                {
-                    <li class="nav-item has-treeview">
-                        <a href="#" class="nav-link">
-                            <i class="nav-icon fas fa-chart-pie"></i>
-                            <p>
-                                Reports
-                                <i class="fas fa-angle-left right"></i>
-                            </p>
+        {
+            <li class="nav-item has-treeview">
+                <a href="#" class="nav-link">
+                    <i class="nav-icon fas fa-chart-pie"></i>
+                    <p>
+                        Reports
+                        <i class="fas fa-angle-left right"></i>
+                    </p>
+                </a>
+                <ul class="nav nav-treeview">
+                    <li class="nav-item">
+                        <a href="/Reports/Index" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Activity Log</p>
                         </a>
-                        <ul class="nav nav-treeview">
-                            <li class="nav-item">
-                                <a href="/Reports/Index" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Activity Log</p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="due.html" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Due Payments</p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="profit.html" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Profits</p>
-                                </a>
-                            </li>
-                        </ul>
                     </li>
-                }*@
+                    <li class="nav-item">
+                        <a href="due.html" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Due Payments</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="profit.html" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Profits</p>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+        }*@
             </ul>
         </nav>
         <!-- /.sidebar-menu -->
