@@ -1,17 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
-using XYZLaundry.Models;
 
-namespace Thakshilawa.Models
+namespace Thakshilawa.ViewModels
 {
-    public class Staff
+    public class staffViewModel
     {
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public float StaffId { get; set; }
         public string Name { get; set; }
 
@@ -22,7 +17,7 @@ namespace Thakshilawa.Models
         public string ReportingPoint { get; set; }
         public string Department { get; set; }
 
-        public int  ContactNumber { get; set; }
+        public int ContactNumber { get; set; }
 
         public string Email { get; set; }
 
