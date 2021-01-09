@@ -1,0 +1,132 @@
+﻿@model Thakshilawa.ViewModels.cafeteriaViewModel
+@inject XYZLaundry.Data.ApplicationDbContext Context
+@inject UserManager<ApplicationUser> _userManager
+@{ ViewData["Title"] = "New";
+    Layout = "";
+
+    var user = await _userManager.GetUserAsync(User);
+    ViewData["FullName"] = $"{user.FirstName} {user.LastName}";
+    var userRole = (await _userManager.GetRolesAsync(user)).FirstOrDefault();
+    ViewData["IsAdmin"] = userRole.ToLower().Equals("super admin") ? true : false; }
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>XYZ Company - Laundry Management System</title>
+
+    @await Html.PartialAsync("_BaseStyles")
+
+</head>
+<body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
+    <div class="wrapper">
+        <!-- Navbar And Menu-->
+        @await Html.PartialAsync("_BaseNavMenu")
+
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <div class="content-header">
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-6">
+                            <h1 class="m-0 text-dark">@ViewData["Title"]</h1>
+                        </div><!-- /.col -->
+                        <div class="col-sm-6">
+                            <ol class="breadcrumb float-sm-right">
+                                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                                <li class="breadcrumb-item active">@ViewData["Title"]</li>
+                            </ol>
+                        </div><!-- /.col -->
+                    </div><!-- /.row -->
+                </div><!-- /.container-fluid -->
+            </div>
+            <!-- /.content-header -->
+            <!-- Main content -->
+            <section class="content">
+                <div class="container-fluid">
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <form asp-controller="Cafeteria" asp-action="Create" method="post" class="form-horizontal">
+                                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                    </div>
+                                    <div class="col-md-6">
+                                        @*<div class="form-group">
+                                            <label asp-for="Id" class="control-label"></label>
+                                            <input asp-for="Id" class="form-control" />
+                                            <span asp-validation-for="Id" class="text-danger"></span>
+                                        </div>*@
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label asp-for="EmployeeID" class="control-label"></label>
+                                            <input asp-for="EmployeeID" class="form-control" />
+                                            <span asp-validation-for="EmployeeID" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label asp-for="Date" class="control-label"></label>
+                                            <input asp-for="Date" class="form-control" />
+                                            <span asp-validation-for="Date" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label asp-for="Income" class="control-label"></label>
+                                            <input asp-for="Income" class="form-control" />
+                                            <span asp-validation-for="Income" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label asp-for="Expenditure" class="control-label"></label>
+                                            <input asp-for="Expenditure" class="form-control" />
+                                            <span asp-validation-for="Expenditure" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group d-flex">
+                                        <div class="col-md-offset-2">
+                                            <button type="submit" class="btn btn-primary">Create</button>
+                                        </div>
+                                        <div class="col-md-offset-2 ml-2">
+                                            <a class="btn btn-secondary" asp-action="Index">Cancel</a>
+                                        </div>
+                                    </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <!--/. container-fluid -->
+            </section>
+            <!-- /.content -->
+
+        </div>
+        <!-- /.content-wrapper -->
+        <!-- Main Footer -->
+        <footer class="main-footer">
+            <strong>Copyright &copy; 2020 <a href="#">XYZ Laundry Management System</a>.</strong>
+            All Rights Reserved.
+        </footer>
+    </div>
+
+
+    @await Html.PartialAsync("_BaseScripts")
+</body>
+
+</html>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+
+
+
