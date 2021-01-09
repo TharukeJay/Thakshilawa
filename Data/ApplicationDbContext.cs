@@ -1,6 +1,7 @@
 ﻿using XYZLaundry.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Thakshilawa.Models;
 
 namespace XYZLaundry.Data
 {
@@ -29,5 +30,7 @@ namespace XYZLaundry.Data
         public DbSet<Item> Items { get; set; }
 
         public DbSet<OrderItem> OrderItems { get; set; }
+
+        public DbSet<Class> Classes { get; set; }
     }
 }
