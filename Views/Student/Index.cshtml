@@ -1,0 +1,175 @@
+﻿@model IEnumerable<Thakshilawa.ViewModels.studentViewModel>
+@inject XYZLaundry.Data.ApplicationDbContext Context
+@inject UserManager<ApplicationUser> _userManager
+@{ ViewData["Title"] = "Students";
+    Layout = "";
+
+    var user = await _userManager.GetUserAsync(User);
+    ViewData["FullName"] = $"{user.FirstName} {user.LastName}";
+    var userRole = (await _userManager.GetRolesAsync(user)).FirstOrDefault();
+    ViewData["IsAdmin"] = userRole.ToLower().Equals("super admin") ? true : false; }
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>XYZ Company - Laundry Management System</title>
+
+    @await Html.PartialAsync("_BaseStyles")
+
+</head>
+<body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
+    <div class="wrapper">
+        <!-- Navbar And Menu-->
+        @await Html.PartialAsync("_BaseNavMenu")
+
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <div class="content-header">
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-6">
+                            <h1 class="m-0 text-dark">@ViewData["Title"]</h1>
+                        </div><!-- /.col -->
+                        <div class="col-sm-6">
+                            <ol class="breadcrumb float-sm-right">
+                                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                                <li class="breadcrumb-item active">@ViewData["Title"]</li>
+                            </ol>
+                        </div><!-- /.col -->
+                    </div><!-- /.row -->
+                </div><!-- /.container-fluid -->
+            </div>
+            <!-- /.content-header -->
+            <!-- Main content -->
+            <section class="content">
+                <div class="container-fluid">
+
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <div class="col-md-10">
+                                        <a class="btn btn-primary" asp-action="Create"><i class="fa fa-plus"></i> New Student</a>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <div>
+                                        <div class="form-group d-flex">
+                                            <div class="input-group col-6 pl-0">
+                                                <input id="mainSearch" class="form-control" placeholder="Search">
+                                                <div class="input-group-append">
+                                                    <span class="input-group-text"><i class="fas fa-search"></i></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <table id="tblCustomers" class="table table-bordered table-striped" style="width: 100%;">
+                                        <thead>
+                                            <tr>
+                                                <th>
+                                                    @Html.DisplayNameFor(model => model.StudentName)
+                                                </th>
+                                                <th>
+                                                    @Html.DisplayNameFor(model => model.NICNo)
+                                                </th>
+
+                                                <th>
+                                                    @Html.DisplayNameFor(model => model.ContactNumber)
+                                                </th>
+
+                                                <th>
+                                                    @Html.DisplayNameFor(model => model.DateofBirth)
+                                                </th>
+
+                                                <th>
+                                                    @Html.DisplayNameFor(model => model.School)
+                                                </th>
+
+                                                <th>
+                                                    @Html.DisplayNameFor(model => model.Grade)
+                                                </th>
+
+                                                <th>
+                                                    @Html.DisplayNameFor(model => model.ContactNumber)
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach (var item in Model)
+                                            {
+                                            <tr>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.StudentName)
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.NICNo)
+                                                </td>
+
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.DateofBirth)
+                                                </td>
+
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.School)
+                                                </td>
+
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.Grade)
+                                                </td>
+
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.Grade)
+                                                </td>
+
+                                                @*<td>
+                                                    <a class="btn mr-1" asp-action="Edit" asp-route-id="@item.CustomerId"><i class="fas fa-edit"></i></a>
+                                                    <a class="btn" asp-action="Delete" asp-route-id="@item.CustomerId"><i class="fas fa-trash"></i></a>
+                                                </td>*@
+                                            </tr>}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--/. container-fluid -->
+            </section>
+            <!-- /.content -->
+
+        </div>
+        <!-- /.content-wrapper -->
+        <!-- Main Footer -->
+        <footer class="main-footer">
+            <strong>Copyright &copy; 2020 <a href="#">XYZ Laundry Management System</a>.</strong>
+            All Rights Reserved.
+        </footer>
+    </div>
+
+
+    @await Html.PartialAsync("_BaseScripts")
+
+    <script type="text/javascript">$(document).ready(function () {
+            var mainTable;
+
+            mainTable = $('#tblCustomers').DataTable({
+                dom: 'Brtip',
+                "responsive": true,
+                buttons: [
+                    'csv', 'excel', 'pdf', 'print'
+                ]
+            });
+
+            $('#mainSearch').keyup(function () {
+                mainTable.search($(this).val()).draw();
+            })
+
+        });</script>
+</body>
+
+</html>

@@ -36,5 +36,12 @@ namespace Thakshilawa.Controllers
 
             return View(students);
         }
+
+        public IActionResult Create()
+        {
+            return View();
+        }
+
+
     }
 }
