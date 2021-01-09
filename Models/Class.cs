@@ -16,8 +16,8 @@ namespace Thakshilawa.Models
 
         public string Duration { get; set; }
 
-        public string LecturerID { get; set; }
+        public int LecturerID { get; set; }
 
-        public string SessionID { get; set; }
+        public int SessionID { get; set; }
     }
 }
