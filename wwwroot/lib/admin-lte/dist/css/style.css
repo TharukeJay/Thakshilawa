@@ -1,0 +1,8 @@
+.login-page, .register-page {
+  background-image: url('../img/bg.jpg');
+  background-size: cover;
+}
+
+.login-logo a, .register-logo a {
+  color: #ffffff;
+}

@@ -1,0 +1,14 @@
+﻿@model OrderItemViewModel
+<div class="row">
+    <div class="col-md-2">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group">            
+            <select asp-for="ItemId" class="form-control select2" name="ItemId" asp-items="@ViewBag.Items"></select>
+        </div>
+    </div>
+    <div class="col-md-2">
+        <div class="form-group">            
+            <input type="number" asp-for="Quantity" name="Quantity" class="form-control" />
+        </div>
+    </div>
+</div>

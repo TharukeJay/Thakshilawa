@@ -1,0 +1,299 @@
+﻿@model XYZLaundry.Models.ApplicationUser
+@inject XYZLaundry.Data.ApplicationDbContext Context
+@{
+    ViewData["Title"] = "System Users";
+    Layout = "";
+    ViewData["FullName"] = $"{Model.FirstName} {Model.LastName}";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>XYZ Company - Laundry Management System</title>
+
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="~/lib/fontawesome-free/css/all.min.css">
+    <!-- overlayScrollbars -->
+    <link rel="stylesheet" href="~/lib/overlayScrollbars/css/OverlayScrollbars.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="~/lib/admin-lte/dist/css/adminlte.min.css">
+    <!-- Google Font: Source Sans Pro -->
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+    <!-- Custom style -->
+    <link rel="stylesheet" href="~/lib/admin-lte/dist/css/style.css">
+
+    <!--Snycfusion-->
+    <link href="~/lib/ejthemes/bootstrap-theme/ej.web.all.min.css" rel="stylesheet" />
+    <link href="~/css/default-responsive.css" rel="stylesheet" />
+    <link href="~/lib/ejthemes/responsive-css/ej.responsive.css" rel="stylesheet" />
+    <link href="~/lib/ejthemes/responsive-css/ejgrid.responsive.css" rel="stylesheet" />
+
+</head>
+
+<body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
+    <div class="wrapper">
+        <!-- Navbar And Menu-->
+        @await Html.PartialAsync("_BaseNavMenu")
+
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <div class="content-header">
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-6">
+                            <h1 class="m-0 text-dark">Residencies &amp; Owners</h1>
+                        </div><!-- /.col -->
+                        <div class="col-sm-6">
+                            <ol class="breadcrumb float-sm-right">
+                                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                                <li class="breadcrumb-item active">Residencies &amp; Owners</li>
+                            </ol>
+                        </div><!-- /.col -->
+                    </div><!-- /.row -->
+                </div><!-- /.container-fluid -->
+            </div>
+            <!-- /.content-header -->
+            <!-- Main content -->
+            <section class="content">
+                <div class="container-fluid">
+
+                    <div class="row mb-2">
+                        <div class="col-sm-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h3 class="card-title">System Users</h3>
+                                </div>
+                                <div class="box-body">
+                                    <div id="Grid"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--/. container-fluid -->
+            </section>
+            <!-- /.content -->
+
+        </div>
+        <!-- /.content-wrapper -->
+        <!-- Main Footer -->
+        <footer class="main-footer">
+            <strong>Copyright &copy; 2020 <a href="#">XYZ Laundry Management System</a>.</strong>
+            All Rights Reserved.
+        </footer>
+    </div>
+
+    <script id="templateEditForm" type="text/template">
+        @*<input hidden id="ApplicationUserId" name="ApplicationUserId" value="{{:ApplicationUserId}}" />*@
+        <table cellspacing="10">
+            <tr>
+                <td>
+                    Email
+                </td>
+                <td colspan="3">
+                    <input type="text" id="Email" class="e-field e-ejinputtext" name="Email" value="{{:Email}}" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    First Name
+                </td>
+                <td>
+                    <input id="FirstName" name="FirstName" value="{{:FirstName}}" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Last Name
+                </td>
+                <td>
+                    <input id="LastName" class="e-field e-ejinputtext" name="LastName" value="{{:LastName}}" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Contact Number
+                </td>
+                <td>
+                    <input id="ContactNumber" class="e-field e-ejinputtext" name="ContactNumber" value="{{:ContactNumber}}" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Account Type
+                </td>
+                <td>
+                    <select id="Role" name="Role">
+                        <option value="Super Admin">Super Admin</option>
+                        <option value="Manager">Manager</option>
+                        <option value="User">User</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Old Password
+                </td>
+                <td>
+                    <input type="password" id="OldPassword" name="OldPassword" value="{{:OldPassword}}" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Password
+                </td>
+                <td>
+                    <input type="password" id="Password" name="Password" value="{{:Password}}" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Re-type Password
+                </td>
+                <td>
+                    <input type="password" id="ConfirmPassword" name="ConfirmPassword" value="{{:ConfirmPassword}}" />
+                </td>
+            </tr>
+        </table>
+    </script>
+
+
+
+    <!-- REQUIRED SCRIPTS -->
+    <!-- jQuery -->
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/lib/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+    <script src="~/lib/admin-lte/dist/js/adminlte.min.js"></script>
+
+    <!--Syncfusion-->
+    <script src="~/scripts/jsondata.min.js"></script>
+    <script src="~/scripts/jsrender.min.js"></script>
+    <script src="~/scripts/ej.web.all.min.js" type="text/javascript"></script>
+    <script src="~/scripts/properties.js" type="text/javascript"></script>
+    <script src="~/scripts/jquery.validate.min.js"></script>
+    <script src="~/scripts/jquery.validate.unobtrusive.min.js"></script>
+
+    <script type="text/javascript">
+        $(function () {
+
+            var dataManager = ej.DataManager({
+                url: "/api/UserDetails",
+                adaptor: new ej.WebApiAdaptor(),
+                offline: true
+            });
+
+            dataManager.ready.done(function (e) {
+                $("#Grid").ejGrid({
+                    dataSource: ej.DataManager({
+                        json: e.result,
+                        adaptor: new ej.remoteSaveAdaptor(),
+                        insertUrl: "/api/UserDetails/Insert",
+                        updateUrl: "/api/UserDetails/Update",
+                        removeUrl: "/api/UserDetails/Remove",
+                    }),
+                    toolbarSettings: {
+                        showToolbar: true,
+                        toolbarItems: ["add", "edit", "update", "cancel"]
+                    },
+                    editSettings: {
+                        allowEditing: true,
+                        allowAdding: true,
+                        allowDeleting: true,
+                        showDeleteConfirmDialog: true,
+                        editMode: "dialogtemplate",
+                        dialogEditorTemplateID: "#templateEditForm",
+                    },
+                    isResponsive: true,
+                    enableResponsiveRow: true,
+                    allowSorting: true,
+                    allowSearching: true,
+                    allowFiltering: true,
+                    filterSettings: {
+                        filterType: "excel",
+                        maxFilterChoices: 100,
+                        enableCaseSensitivity: false
+                    },
+                    allowPaging: true,
+                    pageSettings: { pageSize: 10, printMode: ej.Grid.PrintMode.CurrentPage },
+                    columns: [
+                        { field: "ApplicationUserId", headerText: 'Id', isPrimaryKey: true, visible: false },
+                        { field: "Email", headerText: 'Email', validationRules: { required: true } },
+                        { field: "ContactNumber", headerText: 'Contact Number', validationRules: { required: true } },
+                        { field: "FirstName", headerText: 'First Name', validationRules: { required: true } },
+                        { field: "LastName", headerText: 'Last Name', validationRules: { required: true } },
+                        { field: "Role", headerText: 'Account Type', validationRules: { required: true } }
+                    ],
+                    actionComplete: "complete",
+                });
+            });
+        });
+
+        function begin(args) {
+            if (args.requestType == "add") {
+                $("#Grid").ejGrid("option", { "editSettings": { dialogEditorTemplateID: "#templateEditForm" } });
+            }
+            else if (args.requestType == "beginedit") {
+                $("#Grid").ejGrid("option", { "editSettings": { dialogEditorTemplateID: "#templateEditForm" } });
+            }
+        }
+
+        function complete(args) {
+            $("#Email").ejMaskEdit({
+                inputMode: 'Text',
+                validationRules: { required: true },
+            });
+
+            $("#FirstName").ejMaskEdit({
+                inputMode: 'Text'
+            });
+
+            $("#LastName").ejMaskEdit({
+                inputMode: 'Text'
+            });
+
+            $("#ContactNumber").ejMaskEdit({
+                inputMode: 'Text'
+            });
+
+            $("#Password").ejMaskEdit({
+                inputMode: 'Password',
+                validationRules: { required: true },
+            });
+
+            $("#ConfirmPassword").ejMaskEdit({
+                inputMode: 'Password',
+                validationRules: { required: true },
+            });
+
+            $("#Role").ejDropDownList({
+                validationRules: { required: true },
+            });
+
+            if (args.requestType == 'add') {
+                $("#" + this._id + "_dialogEdit").ejDialog({ title: "Add New User" });
+                $("#OldPassword").ejMaskEdit({
+                    inputMode: 'Password'
+                });
+                $("#OldPassword").ejMaskEdit("disable");
+            }
+
+            if (args.requestType == 'beginedit') {
+                $("#" + this._id + "_dialogEdit").ejDialog({ title: "Edit User" });
+                $("#OldPassword").ejMaskEdit({
+                    inputMode: 'Password',
+                    validationRules: { required: true },
+                });
+            }
+        }
+
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,212 @@
+﻿@model XYZLaundry.ViewModels.OrdersViewModel
+@inject XYZLaundry.Data.ApplicationDbContext Context
+@inject UserManager<ApplicationUser> _userManager
+@{
+    ViewData["Title"] = "New Order";
+    Layout = "";
+
+    var user = await _userManager.GetUserAsync(User);
+    ViewData["FullName"] = $"{user.FirstName} {user.LastName}";
+    var userRole = (await _userManager.GetRolesAsync(user)).FirstOrDefault();
+    ViewData["IsAdmin"] = userRole.ToLower().Equals("super admin") ? true : false;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>XYZ Company - Laundry Management System</title>
+
+    @await Html.PartialAsync("_BaseStyles")
+</head>
+<body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
+    <div class="wrapper">
+        <!-- Navbar And Menu-->
+        @await Html.PartialAsync("_BaseNavMenu")
+
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <div class="content-header">
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-6">
+                            <h1 class="m-0 text-dark">@ViewData["Title"]</h1>
+                        </div><!-- /.col -->
+                        <div class="col-sm-6">
+                            <ol class="breadcrumb float-sm-right">
+                                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                                <li class="breadcrumb-item active">@ViewData["Title"]</li>
+                            </ol>
+                        </div><!-- /.col -->
+                    </div><!-- /.row -->
+                </div><!-- /.container-fluid -->
+            </div>
+            <!-- /.content-header -->
+            <!-- Main content -->
+            <section class="content">
+                <div class="container-fluid">
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <form id="form" asp-controller="Orders" asp-action="Create" method="post" class="form-horizontal">
+                                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label asp-for="CustomerId" class="control-label"></label>
+                                            @if ((bool)@ViewData["IsAdmin"])
+                                            {
+                                                <select asp-for="CustomerId" class="form-control select2" asp-items="@ViewBag.Customers"></select>
+                                            }
+                                            else
+                                            {
+                                                <select asp-for="CustomerId" class="form-control select2" asp-items="@ViewBag.Customers" disabled></select>
+                                            }
+                                            <span asp-validation-for="CustomerId" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label asp-for="ServiceType" class="control-label"></label>
+                                            <select asp-for="ServiceType" class="form-control select2" asp-items="Html.GetEnumSelectList<ServiceType>()">
+                                                <option selected="selected" value="">Please select</option>
+                                            </select>
+                                            <span asp-validation-for="ServiceType" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">                                    
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label asp-for="CollectionType" class="control-label"></label>
+                                            <select asp-for="CollectionType" class="form-control select2" asp-items="Html.GetEnumSelectList<CollectionType>()">
+                                                <option selected="selected" value="">Please select</option>
+                                            </select>
+                                            <span asp-validation-for="CollectionType" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label asp-for="Notes" class="control-label"></label>
+                                            <textarea rows="3" asp-for="Notes" class="form-control"></textarea>
+                                            <span asp-validation-for="Notes" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-2">
+                                        <div class="form-group">
+                                            <label class="control-label">Item</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <div class="form-group">
+                                            <label class="control-label">Quantity</label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div id="editorRows">
+                                    @foreach (var item in Model.OrderItems)
+                                    {
+                                        <partial name="_OrderItem" model="item" />
+                                    }
+                                </div>
+
+                                <div class="row mb-2">
+                                    <div class="col-md-4">
+                                        <a id="addItem" asp-action="BlankItem" asp-controller="Orders" class="btn btn-secondary">Add Item</a>
+                                    </div>
+                                </div>
+
+                                <div class="form-group d-flex">
+                                    <div class="col-md-offset-2">
+                                        <button type="submit" class="btn btn-primary">Create</button>
+                                    </div>
+                                    <div class="col-md-offset-2 ml-2">
+                                        <a class="btn btn-secondary" asp-action="Index">Cancel</a>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <!--/. container-fluid -->
+            </section>
+            <!-- /.content -->
+
+        </div>
+        <!-- /.content-wrapper -->
+        <!-- Main Footer -->
+        <footer class="main-footer">
+            <strong>Copyright &copy; 2020 <a href="#">XYZ Laundry Management System</a>.</strong>
+            All Rights Reserved.
+        </footer>
+    </div>
+
+    <!--modal placeholder-->
+    <div class="modal modal-primary fade" id="modalDefault">
+        <div class="modal-dialog">
+            <div class="modal-content">
+            </div>
+        </div>
+    </div>
+
+    <!-- REQUIRED SCRIPTS -->
+    @await Html.PartialAsync("_BaseScripts")
+
+    <script>
+        $(document).ready(function () {
+            var mainTable;
+
+            mainTable = $('.table').DataTable({
+                "language": {
+                    "emptyTable": "no data found."
+                },
+                "lengthChange": false,
+                "info": false,
+                "searching": false,
+                "paging": false,
+            });
+        });
+
+        $("#submit").click(function (e) {
+            e.preventDefault();
+
+            $.ajax({
+                method: 'post',
+                url: "StoryTest/AddSentence",
+                data: formData,
+                processData: false,
+                contentType: false,
+                success: function () {
+
+                }
+            });
+
+        });
+
+        $("a.deleteRow").on("click", function () {
+            $(this).parents("div.editorRow:first").remove();
+            return false;
+        });
+    </script>
+</body>
+
+</html>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+
+
+
