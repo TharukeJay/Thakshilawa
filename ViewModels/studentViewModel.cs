@@ -8,6 +8,8 @@ namespace Thakshilawa.ViewModels
 {
     public class studentViewModel
     {
+        public int StudentId { get; set; }
+
         [Display(Name = "Student Name")]
         public string StudentName { get; set; }
 
@@ -27,5 +29,19 @@ namespace Thakshilawa.ViewModels
 
         [Display(Name = "Contact Number")]
         public int ContactNumber { get; set; }
+
+        [Display(Name = "Email")]
+        public string Email { get; set; }
+
+        [Display(Name = "Address")]
+        public string Address { get; set; }
+
+        [Display(Name = "Guardian Name")]
+        public string GuardianName { get; set; }
+
+        [Display(Name = "Guardian's Contact Number")]
+        public string GuardianContactNumber { get; set; }
+        [Display(Name = "Guardian's Address")]
+        public string GuardianAddress { get; set; }
     }
 }
