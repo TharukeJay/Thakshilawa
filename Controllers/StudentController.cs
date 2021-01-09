@@ -61,7 +61,12 @@ namespace Thakshilawa.Controllers
                     DateofBirth = s.DateofBirth,
                     School = s.School,
                     Grade = s.Grade,
-                    ContactNumber = s.ContactNumber
+                    ContactNumber = s.ContactNumber,
+                    Email = s.Email,
+                    Address = s.Address,
+                    GuardianName = s.GuardianName,
+                    GuardianContactNumber = s.GuardianContactNumber,
+                    GuardianAddress = s.GuardianAddress
                 })
                 .FirstOrDefaultAsync(m => m.StudentId == id);
 
@@ -71,6 +76,39 @@ namespace Thakshilawa.Controllers
             }
 
             return View(student);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Edit(studentViewModel viewModel)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(viewModel);
+            }
+
+            var user = await GetCurrentUserAsync();
+            var student = await _context.Student
+                .FirstOrDefaultAsync(s => s.StudentId == viewModel.StudentId);
+
+            if (student != null)
+            {
+                student.StudentName = viewModel.StudentName;
+                student.NICNo = viewModel.NICNo;
+                student.DateofBirth = viewModel.DateofBirth;
+                student.School = viewModel.School;
+                student.Grade = viewModel.Grade;
+                student.ContactNumber = viewModel.ContactNumber;
+                student.Email = viewModel.Email;
+                student.Address = viewModel.Address;
+                student.GuardianName = viewModel.GuardianName;
+                student.GuardianContactNumber = viewModel.GuardianContactNumber;
+                student.GuardianAddress = viewModel.GuardianAddress;
+
+                _context.Student.Update(student);
+                await _context.SaveChangesAsync();
+            }
+
+            return RedirectToAction(nameof(Index));
         }
 
         [HttpPost]
