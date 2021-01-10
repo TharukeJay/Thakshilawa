@@ -33,11 +33,12 @@ namespace XYZLaundry.Data
 
         public DbSet<Student> Student { get; set; }
 
+        public DbSet<Classes> Classes { get; set; }
+
+
         public DbSet<Attendence> Attendences { get; set; }
 
         public DbSet<Cafeteria> Cafeteria { get; set; }
-
-        public DbSet<Class> Classes { get; set; }
 
         public DbSet<ClassPayment> ClassPayment { get; set; }
 
@@ -46,5 +47,6 @@ namespace XYZLaundry.Data
         public DbSet<Staff> Staff { get; set; }
 
         public DbSet<Payments> Payments { get; set; }
+
     }
 }
