@@ -26,7 +26,7 @@ namespace Thakshilawa.Controllers
         public async Task<IActionResult> Index()
         {
             var cl = await _context.Classes
-                .Select(s => new ClassesViewModel
+                .Select(s => new ClassViewModel
                 {
                     ClassId = s.ClassId,
                     SubjectName =s.SubjectName,
@@ -45,7 +45,7 @@ namespace Thakshilawa.Controllers
             return View();
         }
         [HttpPost]
-        public async Task<IActionResult> Create(ClassesViewModel viewModel)
+        public async Task<IActionResult> Create(ClassViewModel viewModel)
         {
             if (!ModelState.IsValid)
             {

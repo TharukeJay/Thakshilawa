@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Thakshilawa.ViewModels
 {
-    public class ClassesViewModel
+    public class ClassViewModel
     {
 
         public int ClassId { get; set; }
