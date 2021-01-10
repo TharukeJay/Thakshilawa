@@ -32,6 +32,9 @@ namespace XYZLaundry.Data
        // public DbSet<OrderItem> OrderItems { get; set; }
 
         public DbSet<Student> Student { get; set; }
+<<<<<<< HEAD
+        public DbSet<Classes> Classes { get; set; }
+=======
 
         public DbSet<Attendence> Attendences { get; set; }
 
@@ -46,5 +49,6 @@ namespace XYZLaundry.Data
         public DbSet<Staff> Staff { get; set; }
 
         public DbSet<Payments> Payments { get; set; }
+>>>>>>> 3c7b5a3faf21dc0411d334988b338e5aad368e13
     }
 }
