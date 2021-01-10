@@ -33,6 +33,7 @@ namespace Thakshilawa.Controllers
                     DateofBirth = s.DateofBirth,
                     School = s.School,
                     Grade = s.Grade,
+                    Email = s.Email,
                     ContactNumber = s.ContactNumber
                 }).ToListAsync();
 
