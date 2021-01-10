@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Thakshilawa.ViewModels.studentViewModel>
+﻿@model IEnumerable<Thakshilawa.ViewModels.staffViewModel>
 @inject XYZLaundry.Data.ApplicationDbContext Context
 @inject UserManager<ApplicationUser> _userManager
 @{ ViewData["Title"] = "Students";
@@ -54,7 +54,7 @@
                             <div class="card">
                                 <div class="card-header">
                                     <div class="col-md-10">
-                                        <a class="btn btn-primary" asp-action="Create"><i class="fa fa-plus"></i> New Student</a>
+                                        <a class="btn btn-primary" asp-action="Create"><i class="fa fa-plus"></i> New Staff member</a>
                                     </div>
                                 </div>
                                 <div class="card-body">
@@ -72,7 +72,7 @@
                                         <thead>
                                             <tr>
                                                 <th>
-                                                    @Html.DisplayNameFor(model => model.StudentName)
+                                                    @Html.DisplayNameFor(model => model.Name)
                                                 </th>
                                                 <th>
                                                     @Html.DisplayNameFor(model => model.NICNo)
@@ -87,50 +87,48 @@
                                                 </th>
 
                                                 <th>
-                                                    @Html.DisplayNameFor(model => model.School)
-                                                </th>
-
-                                                <th>
-                                                    @Html.DisplayNameFor(model => model.Grade)
-                                                </th>
-
-                                                <th>
                                                     @Html.DisplayNameFor(model => model.Email)
                                                 </th>
+
+                                                <th>
+                                                    @Html.DisplayNameFor(model => model.Address)
+                                                </th>
+
                                             </tr>
                                         </thead>
                                         <tbody>
                                             @foreach (var item in Model)
                                             {
-                                            <tr>
-                                                <td>
-                                                    @Html.DisplayFor(modelItem => item.StudentName)
-                                                </td>
-                                                <td>
-                                                    @Html.DisplayFor(modelItem => item.NICNo)
-                                                </td>
+                                                <tr>
+                                                    <td>
+                                                        @Html.DisplayFor(modelItem => item.Name)
+                                                    </td>
+                                                    <td>
+                                                        @Html.DisplayFor(modelItem => item.NICNo)
+                                                    </td>
 
-                                                <td>
-                                                    @Html.DisplayFor(modelItem => item.DateofBirth)
-                                                </td>
+                                                    <td>
+                                                        @Html.DisplayFor(modelItem => item.ContactNumber)
+                                                    </td>
 
-                                                <td>
-                                                    @Html.DisplayFor(modelItem => item.School)
-                                                </td>
+                                                    <td>
+                                                        @Html.DisplayFor(modelItem => item.DateofBirth)
+                                                    </td>
 
-                                                <td>
-                                                    @Html.DisplayFor(modelItem => item.Grade)
-                                                </td>
+                                                    <td>
+                                                        @Html.DisplayFor(modelItem => item.Email)
+                                                    </td>
 
-                                                <td>
-                                                    @Html.DisplayFor(modelItem => item.Grade)
-                                                </td>
+                                                    <td>
+                                                        @Html.DisplayFor(modelItem => item.Address)
+                                                    </td>
 
-                                                <td>
-                                                    <a class="btn mr-1" asp-action="Edit" asp-route-id="@item.StudentId"><i class="fas fa-edit"></i></a>
-                                                    <a class="btn" asp-action="Delete" asp-route-id="@item.StudentId"><i class="fas fa-trash"></i></a>
-                                                </td>
-                                            </tr>}
+                                                    <td>
+                                                        <a class="btn mr-1" asp-action="Edit" asp-route-id="@item.StaffId"><i class="fas fa-edit"></i></a>
+                                                        <a class="btn" asp-action="Delete" asp-route-id="@item.StaffId"><i class="fas fa-trash"></i></a>
+                                                    </td>
+                                                </tr>
+}
                                         </tbody>
                                     </table>
                                 </div>
@@ -154,7 +152,8 @@
 
     @await Html.PartialAsync("_BaseScripts")
 
-    <script type="text/javascript">$(document).ready(function () {
+    <script type="text/javascript">
+$(document).ready(function () {
             var mainTable;
 
             mainTable = $('#tblCustomers').DataTable({

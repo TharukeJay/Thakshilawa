@@ -1,7 +1,7 @@
-﻿@model IEnumerable<Thakshilawa.ViewModels.studentViewModel>
+﻿@model IEnumerable<Thakshilawa.ViewModels.cafeteriaViewModel>
 @inject XYZLaundry.Data.ApplicationDbContext Context
 @inject UserManager<ApplicationUser> _userManager
-@{ ViewData["Title"] = "Students";
+@{ ViewData["Title"] = "Cafeteria";
     Layout = "";
 
     var user = await _userManager.GetUserAsync(User);
@@ -54,7 +54,7 @@
                             <div class="card">
                                 <div class="card-header">
                                     <div class="col-md-10">
-                                        <a class="btn btn-primary" asp-action="Create"><i class="fa fa-plus"></i> New Student</a>
+                                        <a class="btn btn-primary" asp-action="Create"><i class="fa fa-plus"></i> New </a>
                                     </div>
                                 </div>
                                 <div class="card-body">
@@ -72,65 +72,56 @@
                                         <thead>
                                             <tr>
                                                 <th>
-                                                    @Html.DisplayNameFor(model => model.StudentName)
+                                                    @Html.DisplayNameFor(model => model.Id)
                                                 </th>
                                                 <th>
-                                                    @Html.DisplayNameFor(model => model.NICNo)
+                                                    @Html.DisplayNameFor(model => model.EmployeeID)
                                                 </th>
 
                                                 <th>
-                                                    @Html.DisplayNameFor(model => model.ContactNumber)
+                                                    @Html.DisplayNameFor(model => model.Date)
                                                 </th>
 
                                                 <th>
-                                                    @Html.DisplayNameFor(model => model.DateofBirth)
+                                                    @Html.DisplayNameFor(model => model.Income)
                                                 </th>
 
                                                 <th>
-                                                    @Html.DisplayNameFor(model => model.School)
+                                                    @Html.DisplayNameFor(model => model.Expenditure)
                                                 </th>
-
-                                                <th>
-                                                    @Html.DisplayNameFor(model => model.Grade)
-                                                </th>
-
-                                                <th>
-                                                    @Html.DisplayNameFor(model => model.Email)
-                                                </th>
+                                                
+                                                <th></th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             @foreach (var item in Model)
                                             {
-                                            <tr>
-                                                <td>
-                                                    @Html.DisplayFor(modelItem => item.StudentName)
-                                                </td>
-                                                <td>
-                                                    @Html.DisplayFor(modelItem => item.NICNo)
-                                                </td>
+                                                <tr>
+                                                    <td>
+                                                        @Html.DisplayFor(modelItem => item.Id)
+                                                    </td>
+                                                    <td>
+                                                        @Html.DisplayFor(modelItem => item.EmployeeID)
+                                                    </td>
 
-                                                <td>
-                                                    @Html.DisplayFor(modelItem => item.DateofBirth)
-                                                </td>
+                                                    <td>
+                                                        @Html.DisplayFor(modelItem => item.Date)
+                                                    </td>
 
-                                                <td>
-                                                    @Html.DisplayFor(modelItem => item.School)
-                                                </td>
+                                                    <td>
+                                                        @Html.DisplayFor(modelItem => item.Income)
+                                                    </td>
 
-                                                <td>
-                                                    @Html.DisplayFor(modelItem => item.Grade)
-                                                </td>
+                                                    <td>
+                                                        @Html.DisplayFor(modelItem => item.Expenditure)
+                                                    </td>
 
-                                                <td>
-                                                    @Html.DisplayFor(modelItem => item.Grade)
-                                                </td>
-
-                                                <td>
-                                                    <a class="btn mr-1" asp-action="Edit" asp-route-id="@item.StudentId"><i class="fas fa-edit"></i></a>
-                                                    <a class="btn" asp-action="Delete" asp-route-id="@item.StudentId"><i class="fas fa-trash"></i></a>
-                                                </td>
-                                            </tr>}
+                                                    <td>
+                                                        <a class="btn mr-1" asp-action="Edit" asp-route-id="@item.Id"><i class="fas fa-edit"></i></a>
+                                                        <a class="btn" asp-action="Delete" asp-route-id="@item.Id"><i class="fas fa-trash"></i></a>
+                                                    </td>
+                                                </tr>
+                                            }
                                         </tbody>
                                     </table>
                                 </div>
@@ -154,7 +145,8 @@
 
     @await Html.PartialAsync("_BaseScripts")
 
-    <script type="text/javascript">$(document).ready(function () {
+    <script type="text/javascript">
+$(document).ready(function () {
             var mainTable;
 
             mainTable = $('#tblCustomers').DataTable({

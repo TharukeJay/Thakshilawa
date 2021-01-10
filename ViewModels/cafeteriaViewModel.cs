@@ -2,16 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using XYZLaundry.Models;
 
-namespace Thakshilawa.Models
+namespace Thakshilawa.ViewModels
 {
-    public class Cafeteria 
+    public class cafeteriaViewModel
     {
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         public int EmployeeID { get; set; }
 
@@ -20,7 +15,5 @@ namespace Thakshilawa.Models
         public Decimal Income { get; set; }
 
         public Decimal Expenditure { get; set; }
-
-
     }
 }

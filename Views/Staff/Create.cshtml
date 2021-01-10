@@ -1,0 +1,185 @@
+﻿@model Thakshilawa.ViewModels.staffViewModel
+@inject XYZLaundry.Data.ApplicationDbContext Context
+@inject UserManager<ApplicationUser> _userManager
+@{ ViewData["Title"] = "New Staff member";
+    Layout = "";
+
+    var user = await _userManager.GetUserAsync(User);
+    ViewData["FullName"] = $"{user.FirstName} {user.LastName}";
+    var userRole = (await _userManager.GetRolesAsync(user)).FirstOrDefault();
+    ViewData["IsAdmin"] = userRole.ToLower().Equals("super admin") ? true : false; }
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>XYZ Company - Laundry Management System</title>
+
+    @await Html.PartialAsync("_BaseStyles")
+
+</head>
+<body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
+    <div class="wrapper">
+        <!-- Navbar And Menu-->
+        @await Html.PartialAsync("_BaseNavMenu")
+
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <div class="content-header">
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-6">
+                            <h1 class="m-0 text-dark">@ViewData["Title"]</h1>
+                        </div><!-- /.col -->
+                        <div class="col-sm-6">
+                            <ol class="breadcrumb float-sm-right">
+                                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                                <li class="breadcrumb-item active">@ViewData["Title"]</li>
+                            </ol>
+                        </div><!-- /.col -->
+                    </div><!-- /.row -->
+                </div><!-- /.container-fluid -->
+            </div>
+            <!-- /.content-header -->
+            <!-- Main content -->
+            <section class="content">
+                <div class="container-fluid">
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <form asp-controller="Staff" asp-action="Create" method="post" class="form-horizontal">
+                                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label asp-for="StaffId" class="control-label"></label>
+                                            <input asp-for="StaffId" class="form-control" />
+                                            <span asp-validation-for="StaffId" class="text-danger"></span>
+                                        </div>
+                                        <div class="form-group">
+                                            <label asp-for="Name" class="control-label"></label>
+                                            <input asp-for="Name" class="form-control" />
+                                            <span asp-validation-for="Name" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label asp-for="NICNo" class="control-label"></label>
+                                            <input asp-for="NICNo" class="form-control" />
+                                            <span asp-validation-for="NICNo" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label asp-for="DateofBirth" class="control-label"></label>
+                                            <input asp-for="DateofBirth" class="form-control" />
+                                            <span asp-validation-for="DateofBirth" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label asp-for="Designation" class="control-label"></label>
+                                            <input asp-for="Designation" class="form-control" />
+                                            <span asp-validation-for="Designation" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label asp-for="ReportingPoint" class="control-label"></label>
+                                            <input asp-for="ReportingPoint" class="form-control" />
+                                            <span asp-validation-for="ReportingPoint" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label asp-for="ContactNumber" class="control-label"></label>
+                                            <input asp-for="ContactNumber" class="form-control" />
+                                            <span asp-validation-for="ContactNumber" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label asp-for="Email" class="control-label"></label>
+                                            <input asp-for="Email" class="form-control" />
+                                            <span asp-validation-for="Email" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label asp-for="Address" class="control-label"></label>
+                                            <input asp-for="Address" class="form-control" />
+                                            <span asp-validation-for="Address" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label asp-for="Department" class="control-label"></label>
+                                            <input asp-for="Department" class="form-control" />
+                                            <span asp-validation-for="Department" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label asp-for="AccountNumber" class="control-label"></label>
+                                            <input asp-for="AccountNumber" class="form-control" />
+                                            <span asp-validation-for="AccountNumber" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label asp-for="BankName" class="control-label"></label>
+                                            <input asp-for="BankName" class="form-control" />
+                                            <span asp-validation-for="BankName" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label asp-for="Branch" class="control-label"></label>
+                                            <input asp-for="Branch" class="form-control" />
+                                            <span asp-validation-for="Branch" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group d-flex">
+                                    <div class="col-md-offset-2">
+                                        <button type="submit" class="btn btn-primary">Create</button>
+                                    </div>
+                                    <div class="col-md-offset-2 ml-2">
+                                        <a class="btn btn-secondary" asp-action="Index">Cancel</a>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <!--/. container-fluid -->
+            </section>
+            <!-- /.content -->
+
+        </div>
+        <!-- /.content-wrapper -->
+        <!-- Main Footer -->
+        <footer class="main-footer">
+            <strong>Copyright &copy; 2020 <a href="#">XYZ Laundry Management System</a>.</strong>
+            All Rights Reserved.
+        </footer>
+    </div>
+
+
+    @await Html.PartialAsync("_BaseScripts")
+</body>
+
+</html>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+
+
+

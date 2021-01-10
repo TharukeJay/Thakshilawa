@@ -1,7 +1,7 @@
-﻿@model IEnumerable<Thakshilawa.ViewModels.studentViewModel>
+﻿@model IEnumerable<Thakshilawa.ViewModels.paymentViewModel>
 @inject XYZLaundry.Data.ApplicationDbContext Context
 @inject UserManager<ApplicationUser> _userManager
-@{ ViewData["Title"] = "Students";
+@{ ViewData["Title"] = "Payments";
     Layout = "";
 
     var user = await _userManager.GetUserAsync(User);
@@ -54,7 +54,7 @@
                             <div class="card">
                                 <div class="card-header">
                                     <div class="col-md-10">
-                                        <a class="btn btn-primary" asp-action="Create"><i class="fa fa-plus"></i> New Student</a>
+                                        <a class="btn btn-primary" asp-action="Create"><i class="fa fa-plus"></i> New Payment</a>
                                     </div>
                                 </div>
                                 <div class="card-body">
@@ -72,31 +72,32 @@
                                         <thead>
                                             <tr>
                                                 <th>
-                                                    @Html.DisplayNameFor(model => model.StudentName)
+                                                    @Html.DisplayNameFor(model => model.PaymentsId)
                                                 </th>
                                                 <th>
-                                                    @Html.DisplayNameFor(model => model.NICNo)
+                                                    @Html.DisplayNameFor(model => model.StudentID)
                                                 </th>
 
                                                 <th>
-                                                    @Html.DisplayNameFor(model => model.ContactNumber)
+                                                    @Html.DisplayNameFor(model => model.ClassID)
                                                 </th>
 
                                                 <th>
-                                                    @Html.DisplayNameFor(model => model.DateofBirth)
+                                                    @Html.DisplayNameFor(model => model.Amount)
                                                 </th>
 
                                                 <th>
-                                                    @Html.DisplayNameFor(model => model.School)
+                                                    @Html.DisplayNameFor(model => model.PaymentType)
                                                 </th>
 
                                                 <th>
-                                                    @Html.DisplayNameFor(model => model.Grade)
+                                                    @Html.DisplayNameFor(model => model.Month)
                                                 </th>
 
                                                 <th>
-                                                    @Html.DisplayNameFor(model => model.Email)
+                                                    @Html.DisplayNameFor(model => model.PaidOn)
                                                 </th>
+                                                <th></th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -104,33 +105,36 @@
                                             {
                                             <tr>
                                                 <td>
-                                                    @Html.DisplayFor(modelItem => item.StudentName)
+                                                    @Html.DisplayFor(modelItem => item.PaymentsId)
                                                 </td>
                                                 <td>
-                                                    @Html.DisplayFor(modelItem => item.NICNo)
+                                                    @Html.DisplayFor(modelItem => item.StudentID)
                                                 </td>
 
                                                 <td>
-                                                    @Html.DisplayFor(modelItem => item.DateofBirth)
+                                                    @Html.DisplayFor(modelItem => item.ClassID)
                                                 </td>
 
                                                 <td>
-                                                    @Html.DisplayFor(modelItem => item.School)
+                                                    @Html.DisplayFor(modelItem => item.Amount)
                                                 </td>
 
                                                 <td>
-                                                    @Html.DisplayFor(modelItem => item.Grade)
+                                                    @Html.DisplayFor(modelItem => item.PaymentType)
                                                 </td>
 
                                                 <td>
-                                                    @Html.DisplayFor(modelItem => item.Grade)
+                                                    @Html.DisplayFor(modelItem => item.Month)
                                                 </td>
-
                                                 <td>
-                                                    <a class="btn mr-1" asp-action="Edit" asp-route-id="@item.StudentId"><i class="fas fa-edit"></i></a>
-                                                    <a class="btn" asp-action="Delete" asp-route-id="@item.StudentId"><i class="fas fa-trash"></i></a>
+                                                    @Html.DisplayFor(modelItem => item.PaidOn)
                                                 </td>
-                                            </tr>}
+                                                <td>
+                                                    <a class="btn mr-1" asp-action="Edit" asp-route-id="@item.PaymentsId"><i class="fas fa-edit"></i></a>
+                                                    <a class="btn" asp-action="Delete" asp-route-id="@item.PaymentsId"><i class="fas fa-trash"></i></a>
+                                                </td>
+                                            </tr>
+}
                                         </tbody>
                                     </table>
                                 </div>
@@ -154,7 +158,8 @@
 
     @await Html.PartialAsync("_BaseScripts")
 
-    <script type="text/javascript">$(document).ready(function () {
+    <script type="text/javascript">
+$(document).ready(function () {
             var mainTable;
 
             mainTable = $('#tblCustomers').DataTable({
