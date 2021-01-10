@@ -54,6 +54,51 @@
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                 <!-- Add icons to the links using the .nav-icon class
     with font-awesome or any other icon font library -->
+                @*<li class="nav-item">
+            <a href="/" class="nav-link @(ViewContext.RouteData.Values["controller"].ToString() == "Home" ? "active" : "")">
+                <i class="nav-icon fas fa-tachometer-alt"></i>
+                <p>Dashboard</p>
+            </a>
+        </li>
+
+        @if ((bool)@ViewData["IsAdmin"])
+        {
+            <li class="nav-item">
+                <a href="/Customer/Index" class="nav-link @(ViewContext.RouteData.Values["controller"].ToString() == "Customer" ? "active" : "")">
+                    <i class="nav-icon fas fa-users"></i>
+                    <p>Customers</p>
+                </a>
+            </li>
+        }
+
+        <li class="nav-item">
+            <a href="/Orders/Index" class="nav-link @(ViewContext.RouteData.Values["controller"].ToString() == "Orders" ? "active" : "")">
+                <i class="nav-icon fas fa-briefcase"></i>
+                @if ((bool)@ViewData["IsAdmin"])
+                {
+                    <p>Orders</p>
+                }
+                else
+                {
+                    <p>My Orders</p>
+                }
+
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a href="/Invoice/Index" class="nav-link @(ViewContext.RouteData.Values["controller"].ToString() == "Invoice" ? "active" : "")">
+                <i class="nav-icon fas fa-money-bill-alt"></i>
+                @if ((bool)@ViewData["IsAdmin"])
+                {
+                    <p>Invoices</p>
+                }
+                else
+                {
+                    <p>My Invoices</p>
+                }
+            </a>
+        </li>*@
 
                 <li class="nav-item">
                     <a href="/" class="nav-link @(ViewContext.RouteData.Values["controller"].ToString() == "Home" ? "active" : "")">
@@ -62,48 +107,8 @@
                     </a>
                 </li>
 
-                @if ((bool)@ViewData["IsAdmin"])
-                {
-                    <li class="nav-item">
-                        <a href="/Customer/Index" class="nav-link @(ViewContext.RouteData.Values["controller"].ToString() == "Customer" ? "active" : "")">
-                            <i class="nav-icon fas fa-users"></i>
-                            <p>Customers</p>
-                        </a>
-                    </li>
-                }
-
                 <li class="nav-item">
-                    <a href="/Orders/Index" class="nav-link @(ViewContext.RouteData.Values["controller"].ToString() == "Orders" ? "active" : "")">
-                        <i class="nav-icon fas fa-briefcase"></i>
-                        @if ((bool)@ViewData["IsAdmin"])
-                        {
-                            <p>Orders</p>
-                        }
-                        else
-                        {
-                            <p>My Orders</p>
-                        }
-
-                    </a>
-                </li>
-
-                <li class="nav-item">
-                    <a href="/Invoice/Index" class="nav-link @(ViewContext.RouteData.Values["controller"].ToString() == "Invoice" ? "active" : "")">
-                        <i class="nav-icon fas fa-money-bill-alt"></i>
-                        @if ((bool)@ViewData["IsAdmin"])
-                        {
-                            <p>Invoices</p>
-                        }
-                        else
-                        {
-                            <p>My Invoices</p>
-                        }
-                    </a>
-                </li>
-
-
-                <li class="nav-item">
-                    <a href="#" class="nav-link">
+                    <a href="/Student/Index" class="nav-link">
                         <i class="nav-icon fas fa-users"></i>
                         <p>Students</p>
                     </a>
@@ -111,7 +116,7 @@
 
 
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
+                    <a href="/Payment/Index" class="nav-link">
                         <i class="nav-icon fas fa-money-bill-alt"></i>
                         <p>Payments</p>
                     </a>
@@ -119,23 +124,23 @@
 
 
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
+                    <a href="/Class/Index" class="nav-link">
                         <i class="nav-icon fas fa-chalkboard-teacher"></i>
                         <p>Classes</p>
                     </a>
                 </li>
 
 
-                <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        <i class="nav-icon fas fa-user-edit"></i>
-                        <p>Lecturers</p>
-                    </a>
-                </li>
+                @*<li class="nav-item">
+            <a href="#" class="nav-link">
+                <i class="nav-icon fas fa-user-edit"></i>
+                <p>Lecturers</p>
+            </a>
+        </li>*@
 
 
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
+                    <a href="/Staff/Index" class="nav-link">
                         <i class="nav-icon fas fa-users-cog"></i>
                         <p>Staff</p>
                     </a>
@@ -143,19 +148,19 @@
 
 
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
+                    <a href="/Cafeteria/Index" class="nav-link">
                         <i class="nav-icon fas fa-coffee"></i>
                         <p>Cafeteria</p>
                     </a>
                 </li>
 
 
-                <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        <i class="nav-icon fas fa-users-lock"></i>
-                        <p>User Accounts</p>
-                    </a>
-                </li>
+                @*<li class="nav-item">
+            <a href="#" class="nav-link">
+                <i class="nav-icon fas fa-user-lock"></i>
+                <p>User Accounts</p>
+            </a>
+        </li>*@
 
 
                 <li class="nav-item has-treeview">
