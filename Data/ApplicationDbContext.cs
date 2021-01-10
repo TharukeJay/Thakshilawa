@@ -32,5 +32,6 @@ namespace XYZLaundry.Data
         public DbSet<OrderItem> OrderItems { get; set; }
 
         public DbSet<Student> Student { get; set; }
+        public DbSet<Classes> Classes { get; set; }
     }
 }
